@@ -121,7 +121,6 @@ void loop() {
     if(ps2x.ButtonReleased(PSB_SQUARE))              //will be TRUE if button was JUST released
       Serial.println("Square just released");     
 
-    if(ps2x.Button(PSB_L1) || ps2x.Button(PSB_R1)) { //print stick values if either is TRUE
       /*Serial.print("Stick Values:");
       Serial.print(ps2x.Analog(PSS_LY), DEC); //Left stick, Y axis. Other options: LX, RY, RX  
       Serial.print(",");
@@ -179,7 +178,7 @@ void loop() {
       nMotMixR = (1.0-fPivScale)*nMotPremixR + fPivScale*(-nPivSpeed);
 
       float rate;
-      if(ps2x.Button(PSB_L3))
+      if(ps2x.Button(PSB_R2))
         rate = 1.0;//BÆÆMM!!
       else
         rate = 0.5;
@@ -199,6 +198,5 @@ void loop() {
       Wire.write(rightMotor);
       Wire.endTransmission();
 
-    }     
   delay(50);  
 }
