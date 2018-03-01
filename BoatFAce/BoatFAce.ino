@@ -190,11 +190,11 @@ void loop() {
       Serial.print(",");
       Serial.println(rightMotor, DEC); 
 
-      Wire.beginTransmission(0);
+      Wire.beginTransmission(8);
       Wire.write(leftMotor);
       Wire.endTransmission();
       
-      Wire.beginTransmission(1);
+      Wire.beginTransmission(9);
       Wire.write(rightMotor);
       Wire.endTransmission();
 
