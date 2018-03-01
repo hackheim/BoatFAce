@@ -1,6 +1,7 @@
+#include <Wire.h>
+
 #include <SoftwareSerial.h>
 
-#include <SPI.h>
 
 
 #include <PS2X_lib.h>  //for v1.6
@@ -16,7 +17,6 @@
 #define PS2_SEL        5  //16
 #define PS2_CLK        4  //17
 
-SoftwareSerial motors(11,12);
 
 #define pressures   true
 #define rumble      true
@@ -29,7 +29,7 @@ byte vibrate = 0;
 
 void setup(){
   Serial.begin(57600);
-  motors.begin(57600);
+  Wire.begin(); 
   delay(300);  //added delay to give wireless ps2 module some time to startup, before configuring it
 
 
@@ -191,10 +191,13 @@ void loop() {
       Serial.print(",");
       Serial.println(rightMotor, DEC); 
 
-      motors.print("L");
-      motors.println(leftMotor);
-      motors.print("R");
-      motors.println(rightMotor);
+      Wire.beginTransmission(0);
+      Wire.write(leftMotor);
+      Wire.endTransmission();
+      
+      Wire.beginTransmission(1);
+      Wire.write(rightMotor);
+      Wire.endTransmission();
 
     }     
   delay(50);  
