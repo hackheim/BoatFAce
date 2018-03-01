@@ -190,13 +190,18 @@ void loop() {
       Serial.print(",");
       Serial.println(rightMotor, DEC); 
 
-      Wire.beginTransmission(8);
-      Wire.write(leftMotor);
-      Wire.endTransmission();
+      //Wire.beginTransmission(8);
+      //Wire.write(leftMotor);
+      //Wire.endTransmission();
+      int left = leftMotor+127;
+      analogWrite(10, constrain(left, 1, 254));
       
-      Wire.beginTransmission(9);
-      Wire.write(rightMotor);
-      Wire.endTransmission();
+      //Wire.beginTransmission(9);
+      //Wire.write(rightMotor);
+      //Wire.endTransmission();
+      int right = rightMotor+127;
+      analogWrite(11, constrain(right, 1, 254));
+      
 
   delay(50);  
 }
